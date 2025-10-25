@@ -73,6 +73,7 @@ cd seatbelt_detection
 ### 2️⃣ Create Virtual Environment (Optional)
 
 ```bash
+<!-- Python 3.10.12 -->
 python -m venv yolovenv
 source yolovenv/bin/activate  # (Linux/Mac)
 yolovenv\Scripts\activate     # (Windows)

@@ -194,7 +194,7 @@ def main(camera_stream):
 
 if __name__ == "__main__":
     try:
-        camera_stream = False
+        camera_stream = True
         main(camera_stream)
     except Exception as e:
         logger.exception("Unexpected error in main loop: %s", e)

@@ -24,10 +24,12 @@ from typing import TypedDict, List
 import tensorflow as tf # type: ignore
 from keras.models import load_model # type: ignore
 
-PREDICTOR_MODEL_PATH = "model/seatbelt_classifier.h5"
+PREDICTOR_MODEL_PATH = "model/seatbelt_classifier.keras"
 CLASS_NAMES = {0: "No Seatbelt worn", 1: "Seatbelt Worn"}
 
 predictor = load_model(PREDICTOR_MODEL_PATH, compile=False)
+# predictor.save("converted_model.keras", save_format="keras")
+
 print("Predictor loaded")
 
 
@@ -94,7 +96,6 @@ class Predictor:
                 logging.critical(f"Model file not found in the path {weights_path}")
                 self.model_loaded = False
                 return None
-            print("attempted load")
             model = attempt_load(weights_path, map_location=self.device)  # load FP32 model
             self.stride = int(model.stride.max())  # type: ignore
             self.image_size = check_img_size(self.image_size, s=self.stride)  # check img_size

@@ -17,4 +17,4 @@ python-dotenv
 ipython 
 psutil  
 thop  
-tensorflow==2.20.0
+tensorflow==2.12.0
