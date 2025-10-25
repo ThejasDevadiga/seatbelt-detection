@@ -128,12 +128,13 @@ def csv_writer_thread(csv_path):
                 ])
             file.flush()
 
-
-def main():
-    global cap
-    INPUT_VIDEO = "/home/thejas-devadiga/Videos/test_2.mp4"
-    # cap = WebcamStream(CAMERA_INDEX)
-    cap = cv2.VideoCapture(INPUT_VIDEO)
+def main(camera_stream):
+    global cap,csv_thread
+    INPUT_VIDEO = "media/test_1.mp4"
+    if camera_stream:
+        cap = WebcamStream(CAMERA_INDEX)
+    else:
+        cap = cv2.VideoCapture(INPUT_VIDEO)
 
     logger.info("Camera stream started.")
     frame_delay = 1.0 / TARGET_FPS
@@ -150,9 +151,12 @@ def main():
     while True:
             ret, frame = cap.read()
             # frame = cv2.imread("src/without-seatbelt.png")
-            # if not ret:
-            #     logger.warning("Failed to grab frame.")
-            #     continue
+            if not ret:
+                logger.warning("Failed to grab frame.")
+                continue
+            if  frame is None:
+                logger.error("Failed to grab frame")
+                continue
             start_time = time.time()
             try:
                 result = prediction_handler.detect(frame, CONF_THRESHOLD)
@@ -160,7 +164,7 @@ def main():
                 for det in result['detections']:
                     cv2.rectangle(frame, (det['min_x'], det['min_y']),(det['max_x'], det['max_y']), det["color"], 2)
 
-                    cv2.putText(frame, f"{det['label']}:{det['confidence']:.2f}",
+                    cv2.putText(frame, f"{det['label']} [{det['seatbelt_label']}]:{det['confidence']:.2f}",
                                 (det['min_x'], det['min_y'] - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, det["color"], 2)
 
@@ -190,7 +194,8 @@ def main():
 
 if __name__ == "__main__":
     try:
-        main()
+        camera_stream = False
+        main(camera_stream)
     except Exception as e:
         logger.exception("Unexpected error in main loop: %s", e)
         cleanup_and_exit()

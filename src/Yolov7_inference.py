@@ -178,7 +178,7 @@ class Predictor:
 
                 seatbelt_label = ""
                 seatbelt_conf = 0.0
-                color = "red"
+                color = (128,128,128)
                 if label.lower() in ["person", "driver"]:  # type: ignore
                     crop = original_image[y1:y2, x1:x2]
                     if crop.size > 0:
