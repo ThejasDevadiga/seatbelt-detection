@@ -114,8 +114,15 @@ model/
 Run the YOLOv7 + TensorFlow pipeline with live webcam feed:
 
 ```bash
-python src/Video_stream.py
+python src/Video_stream.py True
 ```
+
+Run the YOLOv7 + TensorFlow pipeline with sample video feed:
+
+```bash
+python src/Video_stream.py False
+```
+
 
 **Features:**
 

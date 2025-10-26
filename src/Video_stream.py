@@ -153,7 +153,7 @@ def main(camera_stream):
             # frame = cv2.imread("src/without-seatbelt.png")
             if not ret:
                 logger.warning("Failed to grab frame.")
-                continue
+                break
             if  frame is None:
                 logger.error("Failed to grab frame")
                 continue
@@ -194,7 +194,8 @@ def main(camera_stream):
 
 if __name__ == "__main__":
     try:
-        camera_stream = True
+        camera_stream = eval(sys.argv[1])
+        print(type(camera_stream))
         main(camera_stream)
     except Exception as e:
         logger.exception("Unexpected error in main loop: %s", e)
