@@ -12,7 +12,7 @@ from threading import Thread
 from Yolov7_inference import InferenceResult
 from queue import Queue
 from threading import Thread
-
+import torch
 csv_queue = Queue()
 
 #  --------------------------------------------------------------------
@@ -77,9 +77,10 @@ if not model_file.exists():
     logger.error(" file not found: %s", model_file)
     sys.exit(1)
 
+device = '0' if torch.cuda.is_available() else 'cpu'
 
 try:
-    prediction_handler = Predictor(str(model_file), "cpu")
+    prediction_handler = Predictor(str(model_file), device)
     if prediction_handler.model_loaded is False:
         logger.error("Model loading failed for: %s", model_file)
         sys.exit(1)
