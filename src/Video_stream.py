@@ -130,7 +130,7 @@ def csv_writer_thread(csv_path):
 
 def main(camera_stream):
     global cap,csv_thread
-    INPUT_VIDEO = "media/test_1.mp4"
+    INPUT_VIDEO = "media/test_2.mp4"
     if camera_stream:
         cap = WebcamStream(CAMERA_INDEX)
     else:

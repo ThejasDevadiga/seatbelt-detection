@@ -165,6 +165,10 @@ python src/Triton_client.py
 * `seatbelt` (Keras/TensorFlow)
 
 ---
+🎬 
+[![Watch the Demo](./media/demo-thumbnail-1.png)](./media/Demo%20seatbelt%20-Video.webm)
+
+🎬 [![Watch the Demo ](./media/demo-thumbnail-2.png)](./media/Demo%20seatbelt%20-Webcam.webm)
 
 ## 🪵 Logging
 
@@ -218,4 +222,5 @@ Feel free to modify and use for research or production.
 📧 [thejasdevadiga30@gmail.com](mailto:thejasdevadiga30@gmail.com)
 🔗 GitHub: [@ThejasDevadiga](https://github.com/ThejasDevadiga)
 📅 Last updated: **October 2025**
+
 
